@@ -1,0 +1,5 @@
+FROM mysql
+ENV MYSQL_ROOT_PASSWORD= "admin"
+ENV MYSQL_DATABASE= "accounts"
+
+ADD db_bckup.sql  MYSQL_DATABASE
