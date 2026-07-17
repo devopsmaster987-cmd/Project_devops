@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vproapp
+  name: vproapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vproapp
+  template:
+    metadata:
+      labels:
+        app: vproapp
+    spec:
+      initContainers:
+        - name: init-db
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - until nslookup vprodb; do echo waiting for vprodb; sleep 2; done
+        - name: init-mem
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - until nslookup vprocache01; do echo waiting for vprocache01; sleep 2; done
+        - name: init-rmq
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - until nslookup vpromq01; do echo waiting for vpromq01; sleep 2; done
+
+
+
+
+     
+      containers:
+      - image: abdulsamad988/vprofileapp:latest
+        name: vprofileapp
+        ports:
+         - name: app_port
+           containerPort: 8080
