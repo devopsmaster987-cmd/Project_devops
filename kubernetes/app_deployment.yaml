@@ -42,5 +42,5 @@ spec:
       - image: abdulsamad988/vprofileapp:latest
         name: vprofileapp
         ports:
-         - name: app_port
+         - name: app-port
            containerPort: 8080
