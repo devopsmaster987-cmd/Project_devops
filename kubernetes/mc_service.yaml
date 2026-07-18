@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: db-service
-  name: vproapp
+  name: vprocache01
 spec:
   ports:
   - name: db-service
