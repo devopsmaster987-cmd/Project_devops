@@ -19,6 +19,6 @@ spec:
       - image: memcached
         name: mem01
         ports:
-         - name:mc01
+         - name: mc01
            containerPort: 11211
    
