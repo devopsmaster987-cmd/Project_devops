@@ -5,11 +5,15 @@ metadata:
     app: vpromq01
   name: vpromq01
 spec:
+  selector:
+    app: vpromq01
+  type: ClusterIP
   ports:
-  - name: db-service
+  - name: amqp
     port: 5672
     protocol: TCP
-    targetPort: vpromq01
-  selector:
-   app: vpromq01
-  type: ClusterIP
+    targetPort: amqp
+  - name: management
+    port: 15672
+    protocol: TCP
+    targetPort: management
