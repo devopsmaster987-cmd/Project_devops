@@ -9,7 +9,7 @@ spec:
   - name: db-service
     port: 8080
     protocol: TCP
-    targetPort: app_port
+    targetPort: app-port
   selector:
    app: vproapp
   type: LoadBalancer
