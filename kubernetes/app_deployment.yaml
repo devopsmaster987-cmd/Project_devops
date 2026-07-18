@@ -20,24 +20,19 @@ spec:
           command:
             - sh
             - -c
-            - until nslookup vprodb; do echo waiting for vprodb; sleep 2; done
+            - until nslookup vprodb 2>/dev/null | grep -q "Address"; do echo waiting for vprodb; sleep 2; done
         - name: init-mem
           image: busybox:latest
           command:
             - sh
             - -c
-            - until nslookup vprocache01; do echo waiting for vprocache01; sleep 2; done
+            - until nslookup vprocache01 2>/dev/null | grep -q "Address"; do echo waiting for vprocache01; sleep 2; done
         - name: init-rmq
           image: busybox:latest
           command:
             - sh
             - -c
-            - until nslookup vpromq01; do echo waiting for vpromq01; sleep 2; done
-
-
-
-
-     
+            - until nslookup vpromq01 2>/dev/null | grep -q "Address"; do echo waiting for vpromq01; sleep 2; done
       containers:
       - image: abdulsamad988/vprofileapp:latest
         name: vprofileapp
